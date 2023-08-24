@@ -1,4 +1,4 @@
-name: Tag with PostgreSQL versions
+name: Tag with Aurora PostgreSQL versions
 on:
   workflow_dispatch:
     inputs: {}
@@ -19,7 +19,7 @@ jobs:
           aws-region: eu-central-1
       - name: Get AWS RDS versions
         run: |
-          aws rds describe-db-engine-versions --region eu-central-1 --engine postgres --query "DBEngineVersions[*].{version:EngineVersion}" --output json > versions.json
+          aws rds describe-db-engine-versions --region eu-central-1 --engine aurora-postgresql --query "DBEngineVersions[*].{version:EngineVersion}" --output json > versions.json
       - name: Read versions from JSON file
         id: versions
         run: |
